@@ -1,23 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Contact</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Noir & Bloom</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* (Optional) Noir & Bloom specific local styles to match your theme */
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .main-title {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #ffffff;
+        }
+
+        /* Customize inputs to look Noir */
+        .form-control {
+            border-radius: 0;
+            padding: 12px;
+            background-color: #111111; /* Dark grey input background */
+            color: #ffffff;
+            border: 1px solid #333333;
+        }
+
+        .form-control:focus {
+            background-color: #1a1a1a;
+            color: white;
+            border-color: #ffffff;
+            box-shadow: none;
+        }
+
+        /* Ensure placeholder is visible */
+        .form-control::placeholder {
+            color: #888888;
+        }
+
+        /* Button Styling */
+        .btn-submit {
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 0;
+            letter-spacing: 2px;
+            font-weight: 800;
+            padding: 12px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #cccccc;
+            color: #000000;
+        }
+
+        /* Styling for the success message to make it pop */
+        #successMessage h4 {
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+
+        #successMessage p {
+            color: #bbbbbb; /* Lighter grey for better readability */
+        }
+    </style>
 </head>
 <body>
 
-<div class="container my-5">
-    <h2 class="text-center">Contact Us</h2>
+<div class="container my-5" style="max-width: 500px;">
+    <h2 class="text-center mb-5 main-title">Contact Us</h2>
 
-    <form class="mt-4">
-        <input class="form-control mb-3" placeholder="Name">
-        <input class="form-control mb-3" placeholder="Email">
-        <textarea class="form-control mb-3" placeholder="Message"></textarea>
-        <button class="btn btn-dark w-100">Submit</button>
+    <form id="contactForm" class="mt-4">
+        <input type="text" class="form-control mb-3" placeholder="NAME" required>
+        <input type="email" class="form-control mb-3" placeholder="EMAIL" required>
+        <textarea class="form-control mb-3" rows="5" placeholder="MESSAGE" required></textarea>
+        <button type="submit" class="btn btn-submit w-100">SUBMIT</button>
     </form>
+
+    <div id="successMessage" class="text-center mt-5 d-none">
+        <h4 class="text-uppercase mb-3">Thank You</h4>
+        <p>We will contact you soon.</p>
+        <button class="btn btn-outline-light btn-sm mt-4 rounded-0" onclick="location.reload()">Send another message</button>
+    </div>
 </div>
+
+<script>
+    // These lines are mandatory. Check your file for them.
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('successMessage');
+
+    // This event listener intercepts the submit action
+    form.addEventListener('submit', function(event) {
+        
+        // 5. THIS IS THE MOST IMPORTANT LINE: Prevents page reload
+        event.preventDefault(); 
+        
+        // 6. This part swaps the form for the message
+        form.classList.add('d-none'); // Hide the form (Bootstrap class)
+        success.classList.remove('d-none'); // Show the success message (Remove Bootstrap class)
+    });
+</script>
 
 </body>
 </html>
